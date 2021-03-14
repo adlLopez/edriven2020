@@ -1,97 +1,48 @@
-var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
-var day = [32, 29, 32, 31, 32, 31, 31, 32, 31, 32, 31, 32];
+var i = 0;
 
+var sub = document.getElementById("sub");
+var tax = document.getElementById("tax");
+var total = document.getElementById("total");
+var amount = document.getElementById("amount");
+var change = document.getElementById("change");
+var btn = document.getElementById("btn");
 
-// Jan = fri start, 31 days
-// Feb = mon start, 28 days
-// march = mon start, 31 days
-// april = thurs startt, 30 days
-// may = sat start, 31 days
-// june = tue start, 30 days
-// july = thurs start, 30 days
-// august = mon sart, 31 days
-// sept = wed start, 30 days
-// oct = fri start, 31 days
-// nov = mon start, 30 days
-// dec = wed start, 31 days
+function subtotal(){    
+    
+    if(sub.value >= 100){
+        amount.disabled = false;
+        var subVal = parseFloat(sub.value);
+        var taxVal = subVal *.12;
+        var totalVal = subVal + taxVal;
+        
+        tax.value = taxVal.toFixed(2);
+        total.value = totalVal.toFixed(2);
+        amount.value = totalVal.toFixed(2);
+        change.value = "0.00";        
 
-var title = document.getElementById("title");
+        btn.classList.remove('btn-danger');
+        btn.classList.add('btn-success');
+        btn.disabled = false;
 
-window.onload = function(){    
-    var months = prompt("Please enter month [1-12]",);
-    var week = prompt("Please enter week [1-7]",);
-
-    if(months >= 13 || week >= 8){
-        title.innerHTML = "Invalid Input!";
     }
     else{
+        amount.disabled = true;
 
-        title.innerHTML = month[months-1];
-        display(months, week);
+        tax.value = "Tax";
+        total.value = "Total";
+        amount.value = "Amount Paid";
+
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-danger');
+        btn.disabled = true;
     }
-    
+
 }
 
-var table = document.getElementById("days");
+function amountPaid(){
+    var amountVal = parseFloat(amount.value);
+    var totalVal = parseFloat(total.value);
+    var changeVal = amountVal - totalVal;   
 
-
-function display(months, week){
-    var row; var col = 0;
-    
-    for(i = 1; i < day[months-1]; i++){
-        if(i == 1){           
-            
-
-            if(week == 1){
-                row = table.insertRow(-1);
-            }
-            else if(week == 2){
-                row = table.insertRow(-1);
-                row.insertCell(col++);                
-            }
-            else if(week == 3){
-                row = table.insertRow(-1);
-                row.insertCell(col++); 
-                row.insertCell(col++);
-            }
-            else if(week == 4){
-                row = table.insertRow(-1);
-                row.insertCell(col++); 
-                row.insertCell(col++);
-                row.insertCell(col++);
-            }
-            else if(week == 5){
-                row = table.insertRow(-1);
-                row.insertCell(col++); 
-                row.insertCell(col++);
-                row.insertCell(col++);
-                row.insertCell(col++);
-            }
-            else if(week == 6){
-                row = table.insertRow(-1);
-                row.insertCell(col++); 
-                row.insertCell(col++);
-                row.insertCell(col++);
-                row.insertCell(col++);
-                row.insertCell(col++);
-            }
-            else if(week == 7){
-                row = table.insertRow(-1);
-                row.insertCell(col++); 
-                row.insertCell(col++);
-                row.insertCell(col++);
-                row.insertCell(col++);
-                row.insertCell(col++);
-                row.insertCell(col++);
-            }
-            
-        }
-        if(col == 7){
-            row = table.insertRow(-1);
-            col = 0;
-        }    
-
-        val = row.insertCell(col++);
-        val.innerHTML = i;        
-    }
+    change.value = changeVal.toFixed(2);
 }
