@@ -1,3 +1,36 @@
-input{
-    text-align: right;
+p{
+    font-size: 120px;
+    color: #fff;
+    margin-top: 500px;
 }
+
+.fa:hover {
+    opacity: 0.7;
+}
+.row{
+    position: relative;
+}
+.fa-facebook{
+    color: #fff;
+}
+.fa-github{
+    color: #fff;
+}
+.fa-twitter{
+    position: absolute;
+    left: 40%;
+    float: inherit;
+    color: #fff;
+}
+.btn-join{
+    position: relative;
+}
+.btn{
+    margin-top: 20px;
+    position: absolute;
+    left: 45%;
+}
+.btn-join-color{
+    color: #fff;
+}
+

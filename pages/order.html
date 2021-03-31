@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style-order.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title>Document</title>
+</head>
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Al Daniel Lopez.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+              
+    </nav>   
+
+    <div class="container">
+        <button type="button" data-toggle="modal" data-target="#MyModal" class="btn btn-primary text-center">New +</button>
+
+        <table class="table table-hover">
+            <thead>
+              <tr class="table-primary">
+                <th scope="col">Order #</th>
+                <th scope="col">Customer name</th>
+                <th scope="col">Total</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="orders"></tbody>
+          </table>
+    </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">New Order</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label class="col-form-label col-form-label" for="inputSmall">OR Number</label>
+                                <input class="form-control form-control" type="text" placeholder="zxC54e" id="ornum" onchange="ORnumber()">
+                            </div>
+                            <div class="form-group col-md-6 ml-auto">
+                                <label class="col-form-label col-form-label" for="inputSmall">Customer Name</label>
+                                <input class="form-control form-control" type="text" placeholder="Juan Dela cruz" id="name" onchange="customName()">
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="form-group col-md-3">                                
+                                <select class="form-control-sm select-form" data-width="100%" id="selectVal1" onchange="select(1)">
+                                    <option disabled selected value> -- select an option -- </option>                                    
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">                                
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Price" id="price1" min="1" onchange="price(1)" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Qty" id="qty1" min="1" onchange="qty(1)" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Subtotal" id="subtotal1" min="1" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="form-group col-md-3">                                
+                                <select class="form-control-sm select-form" data-width="100%" id="selectVal2" onchange="select(2)">
+                                    <option disabled selected value> -- select an option -- </option>                                    
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">                                
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Price" id="price2" min="1" onchange="price(2)" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Qty" id="qty2" min="1" onchange="qty(2)" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Subtotal" id="subtotal2" min="1" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="form-group col-md-3">                                
+                                <select class="form-control-sm select-form" data-width="100%" id="selectVal3" onchange="select(3)">
+                                    <option disabled selected value> -- select an option -- </option>                                    
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">                                
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Price" id="price3" min="1" onchange="price(3)" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Qty" id="qty3" min="1" onchange="qty(3)" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Subtotal" id="subtotal3" min="1" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="form-group col-md-3">                                
+                                <select class="form-control-sm select-form" data-width="100%" id="selectVal4" onchange="select(4)">
+                                    <option disabled selected value> -- select an option -- </option>                                    
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">                                
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Price" id="price4" min="1" onchange="price(4)" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Qty" id="qty4" min="1" onchange="qty(4)" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Subtotal" id="subtotal4" min="1" disabled>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="totals()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Modal Summary -->
+  <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="form-group col-md-5">
+                              <label class="col-form-label col-form-label" for="inputSmall">OR Number</label>
+                              <input class="form-control form-control" type="text" id="ornumber" onchange="ORnumber()" disabled>
+                          </div>
+                          <div class="form-group col-md-6 ml-auto">
+                              <label class="col-form-label col-form-label" for="inputSmall">Customer Name</label>
+                              <input class="form-control form-control" type="text" placeholder="Juan Dela cruz" id="customername" onchange="customName()" disabled>
+                          </div>
+                      </div>
+                      <p id="helloworld">NONE</p>
+                      <div class="row mt-5">
+                          <div class="form-group col-md-3">                                
+                            <input class="form-control form-control-sm" data-width="100%" type="text" placeholder="Price" id="selectVal11" min="1" onchange="price(4)" disabled>                                             
+                          </div>
+                          <div class="form-group col-md-3">                                
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Price" id="price11" min="1" onchange="price(1)" disabled>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Qty" id="qty11" min="1" onchange="qty(1)" disabled>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Subtotal" id="subtotal11" min="1" disabled>
+                          </div>
+                      </div>
+
+                      <div class="row mt-5">
+                          <div class="form-group col-md-3">                                
+                            <input class="form-control form-control-sm" data-width="100%" type="text" placeholder="Price" id="selectVal22" min="1" onchange="price(4)" disabled>                                             
+                          </div>
+                          <div class="form-group col-md-3">                                
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Price" id="price22" min="1" onchange="price(2)" disabled>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Qty" id="qty22" min="1" onchange="qty(2)" disabled>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Subtotal" id="subtotal22" min="1" disabled>
+                          </div>
+                      </div>
+
+                      <div class="row mt-5">
+                          <div class="form-group col-md-3">     
+                              <input class="form-control form-control-sm" data-width="100%" type="text" placeholder="Price" id="selectVal33" min="1" onchange="price(4)" disabled>                              
+                          </div>
+                          <div class="form-group col-md-3">                                
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Price" id="price33" min="1" onchange="price(3)" disabled>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Qty" id="qty33" min="1" onchange="qty(3)" disabled>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Subtotal" id="subtotal33" min="1" disabled>
+                          </div>
+                      </div>
+
+                      <div class="row mt-5">
+                          <div class="form-group col-md-3">                 
+                            <input class="form-control form-control-sm" data-width="100%" type="text" placeholder="Price" id="selectVal44" min="1" onchange="price(4)" disabled>                                             
+                          </div>
+                          <div class="form-group col-md-3">                                
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Price" id="price44" min="1" onchange="price(4)" disabled>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Qty" id="qty44" min="1" onchange="qty(4)" disabled>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <input class="form-control form-control-sm" data-width="100%" type="number" placeholder="Subtotal" id="subtotal44" min="1" disabled>
+                          </div>
+                      </div>
+                  </div>                    
+              </div>
+              <div class="modal-footer">                    
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
